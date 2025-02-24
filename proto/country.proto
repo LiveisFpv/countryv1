@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package country;
+
+option go_package = "liveisfpv.country.v1;country";
+
+service Country{
+    rpc Add_Country (Add_Country_Request) returns (Add_Country_Response);
+    rpc Get_Country_by_id (Get_Country_by_id_Requset) returns (Get_Country_by_id_Response);
+    rpc Get_All_Country (Get_All_Country_Request) returns (Get_Country_by_id_Response);
+    rpc Update_Country_by_id (Update_Country_by_id_Request) returns (Update_Country_by_id_Response);
+    rpc Delete_Country_by_id (Delete_Country_by_id_Request) returns (Delete_Country_by_id_Response);
+}
+
+message Add_Country_Request{
+    string country_title = 1;
+    string country_capital = 2;
+    string country_area = 3;
+}
+
+message Add_Country_Response{
+    int64 country_id = 1;
+}
+
+message Get_Country_by_id_Requset{
+    int64 country_id = 1;
+}
+
+message Get_Country_by_id_Response{
+    string country_title = 1;
+    string country_capital = 2;
+    string country_area = 3;
+}
+
+message Get_All_Country_Request{
+
+}
+
+message Get_All_Country_Response{
+    repeated Get_Country_by_id_Response countries = 1;
+}
+
+message Update_Country_by_id_Request{
+    int64 country_id = 1;
+}
+
+message Update_Country_by_id_Response{
+    string country_title = 1;
+    string country_capital = 2;
+    string country_area = 3;
+}
+
+message Delete_Country_by_id_Request{
+    int64 country_id = 1;
+}
+
+message Delete_Country_by_id_Response{
+    string country_title = 1;
+}
