@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package country;
 
-option go_package = "liveisfpv.country.v1;country";
+option go_package = "LiveisFPV.country.v1;country";
 
 service Country{
     rpc Add_Country (Add_Country_Request) returns (Add_Country_Response);
@@ -57,3 +57,4 @@ message Delete_Country_by_id_Request{
 message Delete_Country_by_id_Response{
     string country_title = 1;
 }
+// protoc -I proto proto/country.proto --go_out=./gen/go/country/ --go_opt=paths=source_relative --go-grpc_out=./gen/go/country --go-grpc_opt=paths=source_relative
