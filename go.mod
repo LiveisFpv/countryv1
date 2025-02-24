@@ -1,4 +1,4 @@
-module github.com/LiveisFPV/country_v1
+module github.com/LiveisFpv/country_v1
 
 go 1.24.0
 
