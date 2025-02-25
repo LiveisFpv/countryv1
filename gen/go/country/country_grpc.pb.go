@@ -31,7 +31,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CountryClient interface {
 	Add_Country(ctx context.Context, in *Add_Country_Request, opts ...grpc.CallOption) (*Add_Country_Response, error)
-	Get_CountryById(ctx context.Context, in *Get_CountryById_Requset, opts ...grpc.CallOption) (*Get_CountryById_Response, error)
+	Get_CountryById(ctx context.Context, in *Get_CountryById_Request, opts ...grpc.CallOption) (*Get_CountryById_Response, error)
 	Get_All_Country(ctx context.Context, in *Get_All_Country_Request, opts ...grpc.CallOption) (*Get_All_Country_Response, error)
 	Update_CountryById(ctx context.Context, in *Update_CountryById_Request, opts ...grpc.CallOption) (*Update_CountryById_Response, error)
 	Delete_CountryById(ctx context.Context, in *Delete_CountryById_Request, opts ...grpc.CallOption) (*Delete_CountryById_Response, error)
@@ -55,7 +55,7 @@ func (c *countryClient) Add_Country(ctx context.Context, in *Add_Country_Request
 	return out, nil
 }
 
-func (c *countryClient) Get_CountryById(ctx context.Context, in *Get_CountryById_Requset, opts ...grpc.CallOption) (*Get_CountryById_Response, error) {
+func (c *countryClient) Get_CountryById(ctx context.Context, in *Get_CountryById_Request, opts ...grpc.CallOption) (*Get_CountryById_Response, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Get_CountryById_Response)
 	err := c.cc.Invoke(ctx, Country_Get_CountryById_FullMethodName, in, out, cOpts...)
@@ -100,7 +100,7 @@ func (c *countryClient) Delete_CountryById(ctx context.Context, in *Delete_Count
 // for forward compatibility.
 type CountryServer interface {
 	Add_Country(context.Context, *Add_Country_Request) (*Add_Country_Response, error)
-	Get_CountryById(context.Context, *Get_CountryById_Requset) (*Get_CountryById_Response, error)
+	Get_CountryById(context.Context, *Get_CountryById_Request) (*Get_CountryById_Response, error)
 	Get_All_Country(context.Context, *Get_All_Country_Request) (*Get_All_Country_Response, error)
 	Update_CountryById(context.Context, *Update_CountryById_Request) (*Update_CountryById_Response, error)
 	Delete_CountryById(context.Context, *Delete_CountryById_Request) (*Delete_CountryById_Response, error)
@@ -117,7 +117,7 @@ type UnimplementedCountryServer struct{}
 func (UnimplementedCountryServer) Add_Country(context.Context, *Add_Country_Request) (*Add_Country_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add_Country not implemented")
 }
-func (UnimplementedCountryServer) Get_CountryById(context.Context, *Get_CountryById_Requset) (*Get_CountryById_Response, error) {
+func (UnimplementedCountryServer) Get_CountryById(context.Context, *Get_CountryById_Request) (*Get_CountryById_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get_CountryById not implemented")
 }
 func (UnimplementedCountryServer) Get_All_Country(context.Context, *Get_All_Country_Request) (*Get_All_Country_Response, error) {
@@ -169,7 +169,7 @@ func _Country_Add_Country_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _Country_Get_CountryById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Get_CountryById_Requset)
+	in := new(Get_CountryById_Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -181,7 +181,7 @@ func _Country_Get_CountryById_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Country_Get_CountryById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CountryServer).Get_CountryById(ctx, req.(*Get_CountryById_Requset))
+		return srv.(CountryServer).Get_CountryById(ctx, req.(*Get_CountryById_Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
