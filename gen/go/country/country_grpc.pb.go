@@ -32,7 +32,7 @@ const (
 type CountryClient interface {
 	Add_Country(ctx context.Context, in *Add_Country_Request, opts ...grpc.CallOption) (*Add_Country_Response, error)
 	Get_CountryById(ctx context.Context, in *Get_CountryById_Requset, opts ...grpc.CallOption) (*Get_CountryById_Response, error)
-	Get_All_Country(ctx context.Context, in *Get_All_Country_Request, opts ...grpc.CallOption) (*Get_CountryById_Response, error)
+	Get_All_Country(ctx context.Context, in *Get_All_Country_Request, opts ...grpc.CallOption) (*Get_All_Country_Response, error)
 	Update_CountryById(ctx context.Context, in *Update_CountryById_Request, opts ...grpc.CallOption) (*Update_CountryById_Response, error)
 	Delete_CountryById(ctx context.Context, in *Delete_CountryById_Request, opts ...grpc.CallOption) (*Delete_CountryById_Response, error)
 }
@@ -65,9 +65,9 @@ func (c *countryClient) Get_CountryById(ctx context.Context, in *Get_CountryById
 	return out, nil
 }
 
-func (c *countryClient) Get_All_Country(ctx context.Context, in *Get_All_Country_Request, opts ...grpc.CallOption) (*Get_CountryById_Response, error) {
+func (c *countryClient) Get_All_Country(ctx context.Context, in *Get_All_Country_Request, opts ...grpc.CallOption) (*Get_All_Country_Response, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Get_CountryById_Response)
+	out := new(Get_All_Country_Response)
 	err := c.cc.Invoke(ctx, Country_Get_All_Country_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -101,7 +101,7 @@ func (c *countryClient) Delete_CountryById(ctx context.Context, in *Delete_Count
 type CountryServer interface {
 	Add_Country(context.Context, *Add_Country_Request) (*Add_Country_Response, error)
 	Get_CountryById(context.Context, *Get_CountryById_Requset) (*Get_CountryById_Response, error)
-	Get_All_Country(context.Context, *Get_All_Country_Request) (*Get_CountryById_Response, error)
+	Get_All_Country(context.Context, *Get_All_Country_Request) (*Get_All_Country_Response, error)
 	Update_CountryById(context.Context, *Update_CountryById_Request) (*Update_CountryById_Response, error)
 	Delete_CountryById(context.Context, *Delete_CountryById_Request) (*Delete_CountryById_Response, error)
 	mustEmbedUnimplementedCountryServer()
@@ -120,7 +120,7 @@ func (UnimplementedCountryServer) Add_Country(context.Context, *Add_Country_Requ
 func (UnimplementedCountryServer) Get_CountryById(context.Context, *Get_CountryById_Requset) (*Get_CountryById_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get_CountryById not implemented")
 }
-func (UnimplementedCountryServer) Get_All_Country(context.Context, *Get_All_Country_Request) (*Get_CountryById_Response, error) {
+func (UnimplementedCountryServer) Get_All_Country(context.Context, *Get_All_Country_Request) (*Get_All_Country_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get_All_Country not implemented")
 }
 func (UnimplementedCountryServer) Update_CountryById(context.Context, *Update_CountryById_Request) (*Update_CountryById_Response, error) {
