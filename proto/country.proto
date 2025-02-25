@@ -42,6 +42,9 @@ message Get_All_Country_Response{
 
 message Update_Country_by_id_Request{
     int64 country_id = 1;
+    string country_title = 2;
+    string country_capital = 3;
+    string country_area = 4;
 }
 
 message Update_Country_by_id_Response{
